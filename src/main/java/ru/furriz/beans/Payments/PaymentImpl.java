@@ -5,19 +5,39 @@ import java.util.Date;
 
 public class PaymentImpl implements Payment {
     long id;
+    long userId;
+    long walletId;
     String name;
     Boolean profit;
     Boolean made;
     Date paymentDate;
     BigDecimal paymentAmount;
 
-    public PaymentImpl(long id,String name, Boolean profit, Boolean made, Date paymentDate, BigDecimal paymentAmount) {
+    public PaymentImpl(long id, long userId, long walletId, String name, Boolean profit, Boolean made, Date paymentDate, BigDecimal paymentAmount) {
+        this.userId = userId;
+        this.walletId = walletId;
         this.id = id;
         this.name = name;
         this.profit = profit;
         this.made = made;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
+    }
+
+    public long getWalletId() {
+        return walletId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void transactPayment() {
+        made=true;
+    }
+
+    public void cancelPayment() {
+        made=false;
     }
 
     public long getId() {
@@ -58,5 +78,13 @@ public class PaymentImpl implements Payment {
                 ", paymentDate=" + paymentDate +
                 ", paymentAmount=" + paymentAmount +
                 '}';
+    }
+    //TODO rewrite or delete
+    public String paymentToString() {
+        String status = " Статус: проведен";
+        if(made!=true){
+            status = " Статус: не проведен";
+        }
+        return "\""+ name+"\": "+getPaymentAmount()+status;
     }
 }

@@ -8,13 +8,15 @@ import java.util.Map;
 
 public interface Wallet {
 
-    String getName();
+    void removePaymentById(long paymentId);
+    void removePayment(Payment payment);
 
-    BigDecimal getBalance();
+    Payment getPaymentById(long paymentId);
 
+    long getId();
+    long getOwnerId(); //return user owner id
+    String balanceToString();
     void registerPayment(Payment payment);
-
+    BigDecimal getBalance();
     Map<Long,Payment> getPayments();
-
-    void removePaymentById(long id);
 }

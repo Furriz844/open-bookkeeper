@@ -5,6 +5,10 @@ import java.util.Date;
 
 public interface Payment {
     long getId();
+    long getWalletId();
+    long getUserId();
+    void transactPayment();
+    void cancelPayment();
     String getName();
 
     Boolean isProfit();
@@ -14,5 +18,6 @@ public interface Payment {
     BigDecimal getPaymentAmount();
 
     Boolean isMade();
+    String paymentToString();
 
 }
